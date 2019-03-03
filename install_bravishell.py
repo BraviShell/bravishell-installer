@@ -4,12 +4,16 @@ import subprocess
 import argparse
 import sys
 import os
-from urlparse import urljoin
+
 import shlex
 import platform
 from collections import OrderedDict
 if sys.version_info < (3,):
     input = raw_input
+    from urlparse import urljoin
+else:
+    from urllib.parse import urljoin
+
 
 bravi_gh = r"https://github.com/BraviShell/"
 repo_dict = OrderedDict([(urljoin(bravi_gh, "BraviShell"), ""),
