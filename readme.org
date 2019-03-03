@@ -36,7 +36,7 @@ python install_bravishell.py
 
 ** Launching BraviShell
 
-Once installed, open \textsc{MATLAB} and navigate to the location you installed BraviShell to in the matlab file browser. 
+Once installed, open MATLAB and navigate to the location you installed BraviShell to in the matlab file browser. 
 
 Then, run =setup.m=. 
 Then, type =BraviShell= at the command prompt.  Select the "Development" version. 
