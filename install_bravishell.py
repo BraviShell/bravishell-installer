@@ -11,21 +11,6 @@ from collections import OrderedDict
 if sys.version_info < (3,):
     input = raw_input
 
-"""total 48
-drwxrwxrwx  12 psychtests  wheel    408 Feb 20 00:12 .
-drwxr-xr-x  36 root        wheel   1292 May 31  2017 ..
--rw-r--r--@  1 psychtests  wheel  14340 Dec  4 12:54 .DS_Store
-drwxr-xr-x  12 psychtests  wheel    408 Mar  2 14:24 .git
-drwxr-xr-x  45 psychtests  staff   1530 Feb 19 23:42 BraviTests
-drwxr-xr-x   6 psychtests  staff    204 Dec  4 12:53 BraviToolbox Archive
-drwxr-xr-x  16 psychtests  staff    544 Apr  3  2018 Calibration Files
-drwxr-xr-x   9 psychtests  wheel    306 Sep 14 14:38 OLD VERSIONS
-drwxr-xr-x   9 psychtests  wheel    306 May 21  2018 PathSettings
-drwxr-xr-x   7 psychtests  staff    238 Apr  3  2018 Psychtoolbox Archive
--rwxr-xr-x   1 psychtests  wheel    526 Sep 20  2016 SetupPath.m
--rwxr-xr-x   1 psychtests  wheel      9 Sep 20  2016 startup.m
-"""
-
 bravi_gh = r"https://github.com/BraviShell/"
 repo_dict = OrderedDict([(urljoin(bravi_gh, "BraviShell"), ""),
                          (urljoin(bravi_gh, "Compiled"), "Compiled"),
@@ -72,9 +57,13 @@ def is_mac_ok():
     return snow_leopard <= curr_version <= high_sierra
 
 
-
 if __name__ == "__main__":
     try:
-        main(sys.argv[1])
+        root_dir = sys.argv[1]
     except IndexError:
-        print("""Usage: install.py ROOT_DIR""")
+        root_dir = input('Choose an installation location (leave blank to use default: [./BraviShell]): ')
+        if not root_dir.strip():
+            root_dir = os.path.join(os.path.curdir, "BraviShell")
+
+    os.makedirs(root_dir)
+    main(root_dir)
