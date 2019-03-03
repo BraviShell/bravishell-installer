@@ -17,6 +17,8 @@ tests as current written.
 The =git= version control system must be installed and be relatively modern (2.0+)
 
 * Use
+
+** Installation
 To install in one shot:
 #+begin_src bash
 curl -OLs https://raw.githubusercontent.com/BraviShell/bravishell-installer/master/install_bravishell.py && \
@@ -32,3 +34,10 @@ cd bravishell-installer
 python install_bravishell.py
 #+end_src
 
+** Launching BraviShell
+
+Once installed, open \textsc{MATLAB} and navigate to the location you installed BraviShell to in the matlab file browser. 
+
+Then, run =setup.m=. 
+Then, type =BraviShell= at the command prompt.  Select the "Development" version. 
+Then, type =BraviShell= again, and BraviShell should run.
