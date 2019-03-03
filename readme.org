@@ -19,7 +19,9 @@ The =git= version control system must be installed and be relatively modern (2.0
 * Use
 To install in one shot:
 #+begin_src bash
-curl -OLs https://raw.githubusercontent.com/BraviShell/bravishell-installer/master/install_bravishell.py && python install_bravishell.py && rm install_bravishell.py
+curl -OLs https://raw.githubusercontent.com/BraviShell/bravishell-installer/master/install_bravishell.py && \
+python install_bravishell.py && \
+rm install_bravishell.py
 #+end_src
 
 To do this manually:
