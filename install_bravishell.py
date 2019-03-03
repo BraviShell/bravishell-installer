@@ -1,4 +1,4 @@
-#!/usr/bin/env python2
+#!/usr/bin/env python
 from __future__ import print_function
 import subprocess
 import argparse
@@ -8,11 +8,21 @@ import os
 import shlex
 import platform
 from collections import OrderedDict
-if sys.version_info < (3,):
-    input = raw_input
-    from urlparse import urljoin
-else:
+PY3 = sys.version_info >= (3,)
+
+
+if PY3:
     from urllib.parse import urljoin
+
+    def iteritems(d, **kw):
+        return iter(d.items(**kw))
+else:
+    def iteritems(d, **kw):
+        return d.iteritems(**kw)
+
+    input = raw_input
+
+    from urlparse import urljoin
 
 
 bravi_gh = r"https://github.com/BraviShell/"
@@ -33,11 +43,18 @@ def main(root_dir):
     if not os.path.isdir(root_dir):
         sys.exit('{} is not a directory, aborting!'.format(root_dir))
     print("Cloning repositories.  Please enter your github credentials when prompted if you don't have them cached.")
-    for url_key, dest_val in repo_dict.iteritems():
-        destination = os.path.join(root_dir, dest_val)
-        print('cloning {} to {}'.format(url_key, destination))
-        subprocess.check_call(shlex.split('git clone {} "{}"'.format(url_key, destination)))
-    print("Finished cloning repositories.")
+    if not PY3:
+        for url_key, dest_val in repo_dict.iteritems():
+            destination = os.path.join(root_dir, dest_val)
+            print('cloning {} to {}'.format(url_key, destination))
+            subprocess.check_call(shlex.split('git clone {} "{}"'.format(url_key, destination)))
+        print("Finished cloning repositories.")
+    else:
+        for url_key, dest_val in repo_dict.items():
+            destination = os.path.join(root_dir, dest_val)
+            print('cloning {} to {}'.format(url_key, destination))
+            subprocess.check_call(shlex.split('git clone {} "{}"'.format(url_key, destination)))
+        print("Finished cloning repositories.")
 
     print("Setting symbolic link")
     subprocess.check_call(shlex.split('sudo ln -s {} /MatlabTests'.format(root_dir)))
