@@ -1,0 +1,36 @@
+* BraviShell Installer
+
+This repository contains a bootstrap python script which will install a full
+BraviShell development environment on your system.
+
+* Access
+You'll need to be a collaborator to do this. You should know who to email about this
+already!
+
+* Requirements
+This installer has only been tested on MacOS 10.10---10.13 running Matlab 2017a+.
+Other configurations may work, but are not guaranteed.
+
+MacOS Mojave, and some very modern MacBooks, may not work properly with the openGL
+tests as current written.
+
+The =git= version control system must be installed and be relatively modern (2.0+)
+
+* Use
+To install in one shot:
+#+begin_src bash
+cd ~
+mkdir BraviShell
+curl -L https://github.com/BraviShell/bravishell-installer/install_bravishell.py ./BraviShell | python
+#+end_src
+
+To do this manually:
+
+#+begin_src bash
+cd ~
+mkdir BraviShell
+git clone https://github.com/BraviShell/bravishell-installer
+cd bravishell-installer
+python install_bravishell.py ../BraviShell
+#+end_src
+
